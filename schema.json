@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "MkDocs plugin that enables a markdown tag like {{ read_csv('table.csv') }} to directly insert various table formats into a page.",
+  "oneOf": [
+    {
+      "markdownDescription": "https://timvink.github.io/mkdocs-table-reader-plugin/",
+      "enum": [
+        "table-reader"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "table-reader": {
+          "markdownDescription": "https://timvink.github.io/mkdocs-table-reader-plugin/options/",
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "title": "Enables you to deactivate this plugin.",
+              "markdownDescription": "https://timvink.github.io/mkdocs-table-reader-plugin/options/#enabled",
+              "type": "boolean",
+              "default": true
+            },
+            "data_path": {
+              "title": "Additional path to search",
+              "markdownDescription": "https://timvink.github.io/mkdocs-table-reader-plugin/options/#data_path",
+              "type": "string",
+              "default": "."
+            },
+            "allow_missing_files": {
+              "title": "When enabled, if a filepath is not found, the plugin will raise a warning instead of an error.",
+              "markdownDescription": "https://timvink.github.io/mkdocs-table-reader-plugin/options/#allow_missing_files",
+              "type": "boolean",
+              "default": false
+            },
+            "select_readers": {
+              "title": "Specify a list of reader to improve documentation build times for large sites.",
+              "markdownDescription": "https://timvink.github.io/mkdocs-table-reader-plugin/options/#select_readers",
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "const": "read_csv",
+                    "title": "{{ read_csv() }} passed to pandas.read_csv()",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_csv"
+                  },
+                  {
+                    "const": "read_table",
+                    "title": "{{ read_table() }} passed to pandas.read_table()",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_table"
+                  },
+                  {
+                    "const": "read_fwf",
+                    "title": "{{ read_fwf() }} passed to pandas.read_fwf()",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_fwf"
+                  },
+                  {
+                    "const": "read_excel",
+                    "title": "{{ read_excel() }} passed to pandas.read_excel()",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_excel"
+                  },
+                  {
+                    "const": "read_yaml",
+                    "title": "{{ read_yaml() }} is parsed with yaml.safe_load() and passed to pandas.json_normalize()",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_yaml"
+                  },
+                  {
+                    "const": "read_json",
+                    "title": "{{ read_json() }} passed to pandas.read_json()",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_json"
+                  },
+                  {
+                    "const": "read_feather",
+                    "title": "{{ read_feather() }} passed to pandas.read_feather()",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_feather"
+                  },
+                  {
+                    "const": "read_parquet",
+                    "title": "{{ read_parquet() }} passed to pandas.read_parquet()",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_parquet"
+                  },
+                  {
+                    "const": "read_orc",
+                    "title": "{{ read_orc() }} passed to pandas.read_orc()",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_orc"
+                  },
+                  {
+                    "const": "read_html",
+                    "title": "{{ read_html() }} passed to pandas.read_html()",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_html"
+                  },
+                  {
+                    "const": "read_xml",
+                    "title": "{{ read_xml() }} passed to pandas.read_xml()",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_xml"
+                  },
+                  {
+                    "const": "read_hdf",
+                    "title": "{{ read_hdf() }} passed to pandas.read_hdf()",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_hdf"
+                  },
+                  {
+                    "const": "read_sas",
+                    "title": "{{ read_sas() }} passed to pandas.read_sas()",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_sas"
+                  },
+                  {
+                    "const": "read_spss",
+                    "title": "{{ read_spss() }} passed to pandas.read_spss()",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_spss"
+                  },
+                  {
+                    "const": "read_stata",
+                    "title": "{{ read_stata() }} passed to pandas.read_stata()",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_stata"
+                  },
+                  {
+                    "const": "read_raw",
+                    "title": "{{ read_raw() }} inserts contents from a file directly. This is great if you have a file with a table already in markdown format. It could also replace a workflow where you use the snippets extension to embed external files.",
+                    "description": "https://timvink.github.io/mkdocs-table-reader-plugin/readers/#read_raw"
+                  }
+                ]
+              },
+              "default": [
+                "read_csv",
+                "read_table",
+                "read_fwf",
+                "read_excel",
+                "read_yaml",
+                "read_json",
+                "read_feather",
+                "read_parquet",
+                "read_orc",
+                "read_html",
+                "read_xml",
+                "read_hdf",
+                "read_sas",
+                "read_spss",
+                "read_stata",
+                "read_raw"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  ]
+}
